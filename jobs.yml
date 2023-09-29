@@ -1,3 +1,12 @@
+- hosts: localhost
+  gather_facts: no
+  tasks:
+    - name: Ensure correct Python interpreter
+      ansible_python_interpreter: /path/to/your/python3.11
+      delegate_to: localhost
+
+    # Your other tasks here
+
 - name: Create Jekins JObs
   hosts: localhost
   connection: local
