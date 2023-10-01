@@ -4,6 +4,11 @@ def call() {
             node { label 'workstation'}
         }
         stages {
+            stage ('Build') {
+                steps {
+                    sh 'mvn package'
+                }
+            }
 
             stage ('unit tests') {
                 steps {

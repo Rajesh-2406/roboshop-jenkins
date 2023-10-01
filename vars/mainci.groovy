@@ -1,0 +1,41 @@
+def call() {
+    pipeline{
+        agent{
+            node { label 'workstation'}
+        }
+        stages {
+
+            if (env.cibuild == "java") {
+
+                stage('Build') {
+                    steps {
+                        sh 'mvn package'
+                    }
+                }
+
+                stage('unit tests') {
+                    steps {
+                        echo 'unit tests'
+                    }
+                }
+                stage('Code Analysis') {
+                    steps {
+                        sh 'sudo sonar-scanner -Dsonar.host.url=http://172.31.68.239:9000 -Dsonar.login=admin -Dsonar.password=DevOps321 -Dsonar.projectKey=shipping'
+                    }
+                }
+
+                stage('Security Scans') {
+                    steps {
+                        echo 'Security Scans'
+                    }
+                }
+
+                stage('Publish a Artifact') {
+                    steps {
+                        echo 'Publish a Artifact'
+                    }
+                }
+            }
+        }
+    }
+}

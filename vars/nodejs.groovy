@@ -18,7 +18,8 @@ def call () {
             }
             stage('Code Analysis') {
                 steps {
-                    echo 'Code Analysis'
+                    echo 'sonar'
+
                 }
             }
 
