@@ -1,9 +1,8 @@
 def call() {
+    node { label 'workstation'}
+       if (env.cibuild == "java") {
 
-            node { label 'workstation'}
-            if (env.cibuild == "java") {
-
-                stage('Build') {
+           stage('Build') {
                         sh 'mvn package'
                 }
                 stage('unit tests') {
@@ -17,12 +16,11 @@ def call() {
                 stage('Security Scans') {
                         echo 'Security Scans'
                 }
-                if (env.TAG_NAME ==~ ".*"){
-                stage('Publish a Artifact') {
+              if (env.TAG_NAME ==~ ".*"){
+                 stage('Publish a Artifact') {
                     echo 'Publish a Artifact'
-                }
-
-                }
+                 }
+              }
             }
-        }
+  }
 
