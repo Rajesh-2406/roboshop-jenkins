@@ -1,4 +1,5 @@
 def call() {
+
             node { label 'workstation'}
             if (env.cibuild == "java") {
 
