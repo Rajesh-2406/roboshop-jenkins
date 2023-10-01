@@ -8,5 +8,5 @@
     config: "{{ lookup('file', '/tmp/mbranch.xml') }}"
     name: "{{ item }}"
     password: DevOps321
-    url: http://172.31.17.128:8080
+    url: http://172.31.23.176:8080
     user: admin
