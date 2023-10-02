@@ -2,9 +2,13 @@ def call() {
     node('workstation') {
 
         stage('code checkout') {
-            sh 'env'
-            sh 'find . | grep "./" | xargs rm -rf'
-            git branch: env.BRANCH_NAME , url: 'https://github.com/Rajesh-2406/frontend'
+            if(env.TAG_NAME ==~ ".*") {
+                env.gitbname = "refs/tags/${env.TAG_NAME}"
+            }
+            else {
+                env.gitbrname = "${env.BRANCH_NAME}"
+            }
+            checkout scm: [$class: 'GitSCM' , userRemoteConfigs: [[url: 'https://github.com/Rajesh-2406/frontend']], branches: [[name: gitbrname]]], poll: false
         }
         if (env.cibuild == "java") {
 
