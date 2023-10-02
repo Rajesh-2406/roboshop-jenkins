@@ -8,7 +8,7 @@ def call () {
 
             stage('Build') {
                 steps {
-                    //sh 'npm install'
+                    echo 'npm install'
                 }
             }
             stage('unit tests') {
