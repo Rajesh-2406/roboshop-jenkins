@@ -4,7 +4,7 @@ def call() {
         stage('code checkout') {
             sh 'env'
             sh 'find . | grep "./" | xargs rm -rf'
-            git branch: 'main' , url: 'https://github.com/Rajesh-2406/frontend'
+            git branch: env.BRANCH_NAME , url: 'https://github.com/Rajesh-2406/frontend'
         }
         if (env.cibuild == "java") {
 
