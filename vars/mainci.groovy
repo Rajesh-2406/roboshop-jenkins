@@ -5,6 +5,7 @@ def call() {
         stage('Build') {
             sh 'mvn package'
         }
+    }
         stage('unit tests') {
             echo 'unit tests'
 
@@ -22,6 +23,6 @@ def call() {
             }
         }
     }
-}
+
 
 
