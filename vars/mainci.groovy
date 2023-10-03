@@ -2,7 +2,7 @@ def call() {
     node('workstation') {
 
         stage('code checkout') {
-            checkout scm: [$class: 'GitSCM' , userRemoteConfigs: [[url: 'https://github.com/Rajesh-2406/${env.component}']], branches: [[name: 'refs/tags/v1']]], poll: false
+            checkout scm: [$class: 'GitSCM' , userRemoteConfigs: [[url: 'https://github.com/Rajesh-2406/frontend']], branches: [[name: 'refs/tags/v1']]], poll: false
         }
         if (env.cibuild == "java") {
 
