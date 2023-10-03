@@ -29,7 +29,9 @@ def call() {
         }
         if (env.TAG_NAME ==~ ".*") {
             stage('Publish a Artifact') {
-                echo 'Publish a Artifact'
+              if (env.cibuild == "nginx") {
+                  sh 'zip -r ${component}-${TAG_NAME}.zip *'
+              }
             }
         }
     }
