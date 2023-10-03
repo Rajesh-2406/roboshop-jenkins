@@ -4,7 +4,7 @@ def call() {
         stage('code checkout') {
             git (
                     url: 'https://github.com/Rajesh-2406/frontend' ,
-                    branch: v1 ,
+                    branch: 'v1',
                     changelog: false,
                     poll: false
             )
