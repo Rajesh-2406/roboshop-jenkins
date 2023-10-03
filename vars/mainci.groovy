@@ -34,9 +34,6 @@ def call() {
                 sh 'rm -f Jenkinsfile'
                 sh 'echo ${TAG_NAME} >VERSION'
                 sh 'zip -r ${component}-${TAG_NAME}.zip *'
-              if (env.cibuild == "nginx") {
-                  sh 'zip -r ${component}-${TAG_NAME}.zip *'
-              }
                 sh 'curl -v -u admin:DevOps321 --upload-file ${component}-${TAG_NAME}.zip http://172.31.20.63:8081/repository/${component}/${component}-${TAG_NAME}.zip'
             }
         }
