@@ -10,7 +10,7 @@ def call() {
                 env.gitbrname = "${env.BRANCH_NAME}"
             }
 
-            checkout scm: [$class: 'GitSCM', userRemoteConfigs: [[url: 'https://github.com/Rajesh-2406/frontend' ,]], branches: [[name: gitbrname]]],poll: false
+            checkout scm: [$class: 'GitSCM', userRemoteConfigs: [[url: "https://github.com/Rajesh-2406/${env.component}"]], branches: [[name: gitbrname]]],poll: false
         }
         if (env.cibuild == "java") {
 
@@ -31,9 +31,13 @@ def call() {
         }
         if (env.TAG_NAME ==~ ".*") {
             stage('Publish a Artifact') {
+                sh 'rm -f Jenkinsfile'
+                sh 'echo ${TAG_NAME} >VERSION'
+                sh 'zip -r ${component}-${TAG_NAME}.zip *'
               if (env.cibuild == "nginx") {
                   sh 'zip -r ${component}-${TAG_NAME}.zip *'
               }
+                sh 'curl -v -u admin:DevOps321 --upload-file ${component}-${TAG_NAME}.zip http://172.31.20.63:8081/repository/${component}/${component}-${TAG_NAME}.zip'
             }
         }
     }
