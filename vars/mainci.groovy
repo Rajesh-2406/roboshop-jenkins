@@ -2,9 +2,12 @@ def call() {
     node('workstation') {
 
         stage('code checkout') {
-            sh 'env'
-            sh 'find . | grep "./" | xargs rm -rf'
-            git branch: env.BRANCH_NAME , url: 'https://github.com/Rajesh-2406/frontend'
+            git (
+                    url: 'https://github.com/Rajesh-2406/frontend' ,
+                    branch: v1 ,
+                    changelog: false,
+                    poll: false
+            )
         }
         if (env.cibuild == "java") {
 
