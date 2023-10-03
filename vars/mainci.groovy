@@ -8,7 +8,7 @@ def call() {
                 env.gitbrname = "${env.BRANCH_NAME}"
             }
 
-            checkout scm: [$class: 'GitSCM', userRemoteConfigs: [[url: 'https://github.com/Rajesh-2406/frontend' ,]], branches: [[name: 'gitbrname']]],poll: false
+            checkout scm: [$class: 'GitSCM', userRemoteConfigs: [[url: 'https://github.com/Rajesh-2406/frontend' ,]], branches: [[name: gitbrname]]],poll: false
         }
         if (env.cibuild == "java") {
 
