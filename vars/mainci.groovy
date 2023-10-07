@@ -12,12 +12,7 @@ def call() {
 
             checkout scm: [$class: 'GitSCM', userRemoteConfigs: [[url: "https://github.com/Rajesh-2406/${env.component}"]], branches: [[name: gitbrname]]],poll: false
         }
-        if (env.cibuild == "java") {
 
-            stage('Build') {
-              sh 'mvn package'
-            }
-        }
         stage('unit tests') {
             echo 'unit tests'
 
@@ -31,6 +26,13 @@ def call() {
         }
         if (env.TAG_NAME ==~ ".*") {
             stage('Publish a Artifact') {
+                if (env.cibuild == "java") {
+
+                    stage('Build') {
+                        sh 'mv target/${component}-1.0.jar ${component}.jar'
+                        sh 'rm -rf pom.xml src target'
+                    }
+                }
                 sh 'rm -f Jenkinsfile'
                 sh 'echo ${TAG_NAME} >VERSION'
                 sh 'zip -r ${component}-${TAG_NAME}.zip *'
