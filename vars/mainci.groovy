@@ -29,7 +29,7 @@ def call() {
                 if (env.cibuild == "java") {
 
                     stage('Build') {
-                        sh 'mv target/${component}-1.0.jar ${component}.jar'
+                        sh 'mv target/${component}-.jar ${component}.jar'
                         sh 'rm -rf pom.xml src target'
                     }
                 }
